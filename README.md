@@ -1,5 +1,5 @@
 # Road Free Space Segmentation Internship Project
-This repository contains the detecting of freespace with semantic segmentation using PyTorch Before the start I want to explain what is freespace. Freespace is drivable area of highway. 
+This repository contains the detecting of freespace with semantic segmentation using PyTorch.
 
 ## What is Freespace?
 
