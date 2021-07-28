@@ -10,10 +10,10 @@ Freespace is the drivable area of the highway.
  
  Data is needed for semantic segmentation. The data is labeled images in this project. Labeled images contain freespace, lines, traffic signs, etc. This project focus on just freespace. This project's data is images and jsons. Images consist of photos taken on highways. Jsons consist of values labeled in images.
  
- ### Image 
- ![image](https://user-images.githubusercontent.com/36865654/127333742-dd3e1fd3-0d3a-4417-b6c8-4fc007012b9d.jpg)
- ### Json
- ![json](https://user-images.githubusercontent.com/36865654/127333782-0a59858e-6f5c-42e9-a27a-4d5c9a650048.png)
+ #### Image 
+ ![image](https://user-images.githubusercontent.com/36865654/127346157-34c2e96d-ec7e-4f48-a2bb-85c2bbb5f5f2.jpg)
+ #### Json
+ ![json](https://user-images.githubusercontent.com/36865654/127346167-9023a8ff-72d9-4143-9d57-c6950057bb72.png)
 
  ## Constant
  constant.py is a script with file paths and some values.
@@ -74,7 +74,7 @@ for json_name in tqdm.tqdm(json_list):
     # Write mask image into MASK_DIR folder
     cv2.imwrite(mask_path, mask.astype(np.uint8))
 ```
-### An example of a mask
+#### An example of a mask
 ![example_mask](https://user-images.githubusercontent.com/36865654/127341903-e65f00da-47e9-47e7-bd0c-ebeaa4f2b42e.png)
 
 ## Mask on Image
@@ -85,6 +85,11 @@ image[mask==1, :] = (69, 190, 121)
 
 ```
 The color of freespace can be changed with the values in this line.
+
+#### After mask_on_image.py script -> Masked Image
+![example_masked_image](https://user-images.githubusercontent.com/36865654/127345781-d2a4a42b-6c26-4552-853c-77abc52a260b.png)
+
+
 
 
 
