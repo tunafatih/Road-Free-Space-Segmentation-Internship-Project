@@ -16,7 +16,7 @@ Freespace is the drivable area of the highway.
  ![json](https://user-images.githubusercontent.com/36865654/127333782-0a59858e-6f5c-42e9-a27a-4d5c9a650048.png)
 
  ## Constant
- Constant.py is a script with file paths and some values.
+ constant.py is a script with file paths and some values.
  ``` 
  # Path to jsons
 JSON_DIR = 'D:\Ford_Intern\intern-p1\data\jsons'
@@ -46,3 +46,54 @@ PREDICT_MASK_DIR  = 'D:\Ford_Intern\intern-p1\data\predict_masks'
 # Path to data augmentation
 AUGMENTATION_DIR = r'D:\Ford_Intern\intern-p1\data\augmentations'
  ```
+## Json To Mask
+json2mask.py is a script that convert JSON to mask. The jsons in the jsons folder are selected with a loop and when the classTitle is freespace, the values are drawn with the fillypolly method of the opencv library.
+```
+# For every json file
+for json_name in tqdm.tqdm(json_list):
+
+    # Access and open json file as dictionary
+    json_path = os.path.join(JSON_DIR, json_name)
+    json_file = open(json_path, 'r')
+
+    # Load json data
+    json_dict = json.load(json_file)
+
+    # Create an empty mask whose size is the same as the original image's size
+    mask = np.zeros((json_dict["size"]["height"], json_dict["size"]["width"]), dtype=np.uint8)
+    mask_path = os.path.join(MASK_DIR, json_name[:-9]+".png")
+
+    # For every objects
+    for obj in json_dict["objects"]:
+        # Check the objects ‘classTitle’ is ‘Freespace’ or not.
+        if obj['classTitle']=='Freespace':
+            # Extract exterior points which is a point list that contains
+            # every edge of polygon and fill the mask with the array.
+            mask = cv2.fillPoly(mask, np.array([obj['points']['exterior']]), color=1)
+
+    # Write mask image into MASK_DIR folder
+    cv2.imwrite(mask_path, mask.astype(np.uint8))
+```
+### An example of a mask
+![example_mask](https://user-images.githubusercontent.com/36865654/127341903-e65f00da-47e9-47e7-bd0c-ebeaa4f2b42e.png)
+
+## Mask on Image
+mask_on_image.py is a script that puts the mask on the image. Masks in the mask folder are selected with a loop and put into the corresponding image. New images are written to another folder.
+
+```
+image[mask==1, :] = (69, 190, 121)
+
+```
+The color of freespace can be changed with the values in this line.
+
+
+
+
+
+
+
+
+
+
+
+
