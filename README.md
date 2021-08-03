@@ -583,13 +583,8 @@ for mask in tqdm.tqdm(mask_path_list):
 
 This way the data is duplicated and added to the dataset. After the duplicated data was added to the dataset, I started the training again with 25 epochs.
 
-#### Before the data augmentation:
+![full_cfc_cfcu_images_result](https://user-images.githubusercontent.com/36865654/128041275-e6f0a11d-e950-429e-b111-2b663fbc09f1.png) ![result_full_with_full_aug_25_epoch](https://user-images.githubusercontent.com/36865654/128041283-7051e459-29bc-465c-92b2-e4ceaab6efaf.png)
 
-![full_cfc_cfcu_images_result](https://user-images.githubusercontent.com/36865654/128040313-3de31004-e0ce-41c4-b4d6-9a52c0449f6f.png)
- 
- #### After the data augmentation:
- 
-![result_full_with_full_aug_25_epoch](https://user-images.githubusercontent.com/36865654/128040460-64076282-251c-411c-81a9-0535219de0ce.png)
 
 
 
