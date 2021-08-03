@@ -433,6 +433,178 @@ for i in tqdm.tqdm(range(len(test_input_path_list))):
 
 ![predicted_mask_example](https://user-images.githubusercontent.com/36865654/127888016-c9696a86-c5dd-4d5e-9b09-9bf42b20fe5e.png)
 
+## predicted_mask_on_image.py 
+predicted_mask_on_image.py is a script that puts predicted mask on the image. Predicted masks in the predicted mask folder are selected with a loop and put into the corresponding image. New images are written to predicts folder.
+```
+for mask_name in tqdm.tqdm(mask_list):
+    # Name without extension
+    mask_name_without_ex = mask_name.split('.')[0]
+
+    # Access required folders
+    predict_mask_path = os.path.join(PREDICT_MASK_DIR, mask_name)
+    image_path = os.path.join(IMAGE_DIR, mask_name_without_ex+'.jpg')
+    predict_path = os.path.join(PREDICT_DIR, mask_name)
+
+    # Read predict mask and corresponding original image
+    mask  = cv2.imread(predict_mask_path, 0).astype(np.uint8)
+    mask = mask / 100
+    image = cv2.imread(image_path).astype(np.uint8)
+    image=cv2.resize(image,(224, 224))
+
+    # Change the color of the pixels on the original image that corresponds
+    # to the mask part and create new image
+    cpy_image = image.copy()
+    image[mask==1, :] = (255, 0, 125)
+    opac_image = (image/2 + cpy_image/2).astype(np.uint8)
+
+    # Write output image into predict_masks folder
+    cv2.imwrite(predict_path, opac_image)
+
+```
+## Results
+Some results of the project are shown below.
+
+![cfc_000236 jpg](https://user-images.githubusercontent.com/36865654/128032770-3adc4376-f93e-48a7-93e2-64dc51646f2b.png) ![cfc_000253 jpg](https://user-images.githubusercontent.com/36865654/128032795-d063917e-5536-46d6-8aa1-216e23023d50.png)
+![cfc_000366 jpg](https://user-images.githubusercontent.com/36865654/128032849-c3fdc3ac-1801-4fc2-acee-23dc859d7f9b.png) ![cfc_000511 jpg](https://user-images.githubusercontent.com/36865654/128032940-038d0768-fe2a-4182-9394-9d36349c4a2c.png)
+![cfc_000591 jpg](https://user-images.githubusercontent.com/36865654/128032959-efd33139-58f4-4804-80a7-4b3018a9a2c6.png) ![cfc_000925 jpg](https://user-images.githubusercontent.com/36865654/128033084-3c22d3d4-2590-4231-b298-4cb4233f6514.png)
+![cfc_000927 jpg](https://user-images.githubusercontent.com/36865654/128033094-9a55602e-a704-4284-bb19-f5a219cc62e2.png) ![cfc_001238 jpg](https://user-images.githubusercontent.com/36865654/128033130-e7ebce64-91fc-4bc5-89e8-66b55139c497.png)
+![cfc_002527 jpg](https://user-images.githubusercontent.com/36865654/128033329-a2e6a6ad-70d1-4f1e-a58b-c3ccb4718a0f.png) ![cfc_002705 jpg](https://user-images.githubusercontent.com/36865654/128033392-61d08bbc-63c7-435d-aa59-9137e76e2542.png)
+![cfc_002759 jpg](https://user-images.githubusercontent.com/36865654/128033409-2da5ca99-a55b-46af-8aff-1cc91f4e69e1.png) ![cfc_003970 jpg](https://user-images.githubusercontent.com/36865654/128033494-da153595-d941-4f53-90eb-dd7abb251c03.png)
+
+Overall the results look good, but not so good for images with less in the dataset. The name of the way to solve this problem is data augmentation. 
+
+## Data Augmentation
+
+Definition of “data augmentation” on Wikipedia is “Techniques are used to increase the amount of data by adding slightly modified copies of already existing data or newly created synthetic data from existing data.” So data augmentation involves creating new and representative data.
+
+Tunnels and overpasses are less in this project's dataset. For this reason, the results in tunnels and overpasses are less successful. Less successful images were reproduced in the augmentations.py script by flipping or changing their color.
+
+#### Horizontal Flip
+In the code below, selected images and masks are flipped.
+```
+# HorizontalFlip image
+for image in tqdm.tqdm(image_path_list):
+    image_name_without_ex = image.split('.')[0]
+    image = cv2.imread(image)
+
+    augmentation = albumentations.HorizontalFlip(p=1.0)
+    data = {"image": image}
+    augmented = augmentation(**data)
+    augmentation_images_path = os.path.join(AUGMENTATION_DIR, image_name_without_ex + "_flip" + ".jpg")
+    augmentation_images_path = augmentation_images_path.replace('image','augmentation_image')
+    cv2.imwrite(augmentation_images_path,augmented["image"])
+
+# HorizontalFlip mask
+for mask in tqdm.tqdm(mask_path_list):
+    mask_name_without_ex = mask.split('.')[0]
+    mask = cv2.imread(mask)
+
+    augmentation = albumentations.HorizontalFlip(p=1.0)
+    data = {"image": mask}
+    augmented = augmentation(**data)
+    
+    augmentation_masks_path = os.path.join(AUGMENTATION_DIR, mask_name_without_ex + "_flip" + ".png")
+    augmentation_masks_path = augmentation_masks_path.replace('mask','augmentation_mask')
+    cv2.imwrite(augmentation_masks_path,augmented["image"])
+```
+![ex1](https://user-images.githubusercontent.com/36865654/128036926-4cdd8986-9cb4-4536-83d3-33d58c5853f8.jpg) ![ex1_flip](https://user-images.githubusercontent.com/36865654/128036940-d1e3915a-5f7f-4ec0-aad2-c6e003c386ad.jpg)
+
+#### To Gray
+```
+# ToGray image
+for image in tqdm.tqdm(image_path_list):
+    image_name_without_ex = image.split('.')[0]
+    image = cv2.imread(image)
+
+    augmentation = albumentations.ToGray(p=1)
+    data = {"image": image}
+    augmented = augmentation(**data)
+    augmentation_images_path = os.path.join(AUGMENTATION_DIR, image_name_without_ex + "_Gray" + ".jpg")
+    augmentation_images_path = augmentation_images_path.replace('image','augmentation_image')
+    cv2.imwrite(augmentation_images_path,augmented["image"])
+
+# ToGray mask
+for mask in tqdm.tqdm(mask_path_list):
+    mask_name_without_ex = mask.split('.')[0]
+    mask = cv2.imread(mask)
+    augmentation_masks_path = os.path.join(AUGMENTATION_DIR, mask_name_without_ex + "_Gray" + ".png")
+    augmentation_masks_path = augmentation_masks_path.replace('mask','augmentation_mask')
+    cv2.imwrite(augmentation_masks_path,mask)
+```
+![ex2](https://user-images.githubusercontent.com/36865654/128038477-cd359e70-deb8-4a9f-98f7-0c5465586b83.jpg) ![ex2_gray](https://user-images.githubusercontent.com/36865654/128038490-f3256b79-8cd4-42b8-9284-550fa1451708.jpg)
+
+#### Channel Shuffle
+```
+# ChannelShuffle image
+for image in tqdm.tqdm(image_path_list):
+    image_name_without_ex = image.split('.')[0]
+    image = cv2.imread(image)
+
+    augmentation = albumentations.ChannelShuffle(p=1)
+    data = {"image": image}
+    augmented = augmentation(**data)
+    augmentation_images_path = os.path.join(AUGMENTATION_DIR, image_name_without_ex + "_ChannelShuffle" + ".jpg")
+    augmentation_images_path = augmentation_images_path.replace('image','augmentation_image')
+    cv2.imwrite(augmentation_images_path,augmented["image"])
+
+# ChannelShuffle mask
+for mask in tqdm.tqdm(mask_path_list):
+    mask_name_without_ex = mask.split('.')[0]
+    mask = cv2.imread(mask)
+    augmentation_masks_path = os.path.join(AUGMENTATION_DIR, mask_name_without_ex + "_ChannelShuffle" + ".png")
+    augmentation_masks_path = augmentation_masks_path.replace('mask','augmentation_mask')
+    cv2.imwrite(augmentation_masks_path,mask)
+```
+![ex3](https://user-images.githubusercontent.com/36865654/128038770-44941ead-819f-4ef4-8158-aef4c5e212e0.jpg) ![ex3_channelshuffle](https://user-images.githubusercontent.com/36865654/128038785-7f781507-1a09-4818-885f-aa1a15b2a261.jpg)
+
+#### Multiplicative Noise
+```
+# MultiplicativeNoise image
+for image in tqdm.tqdm(image_path_list):
+    image_name_without_ex = image.split('.')[0]
+    image = cv2.imread(image)
+
+    augmentation = albumentations.MultiplicativeNoise(multiplier=[0.5, 1.5], per_channel=True, p=1)
+    data = {"image": image}
+    augmented = augmentation(**data)
+    augmentation_images_path = os.path.join(AUGMENTATION_DIR, image_name_without_ex + "_MultiplicativeNoise" + ".jpg")
+    augmentation_images_path = augmentation_images_path.replace('image','augmentation_image')
+    cv2.imwrite(augmentation_images_path,augmented["image"])
+
+# MultiplicativeNoise mask
+for mask in tqdm.tqdm(mask_path_list):
+    mask_name_without_ex = mask.split('.')[0]
+    mask = cv2.imread(mask)
+    augmentation_masks_path = os.path.join(AUGMENTATION_DIR, mask_name_without_ex + "_MultiplicativeNoise" + ".png")
+    augmentation_masks_path = augmentation_masks_path.replace('mask','augmentation_mask')
+    cv2.imwrite(augmentation_masks_path,mask)
+```
+![ex4](https://user-images.githubusercontent.com/36865654/128039217-446f4c6a-8852-4a56-b987-f5cbd72d0d66.jpg) ![ex4_MultiplicativeNoise](https://user-images.githubusercontent.com/36865654/128039233-6d51b034-e438-4f07-9f67-33c77cfb147e.jpg)
+
+This way the data is duplicated and added to the dataset. After the duplicated data was added to the dataset, I started the training again with 25 epochs.
+
+#### Before the data augmentation:
+
+![full_cfc_cfcu_images_result](https://user-images.githubusercontent.com/36865654/128040313-3de31004-e0ce-41c4-b4d6-9a52c0449f6f.png)
+ 
+ #### After the data augmentation:
+ 
+![result_full_with_full_aug_25_epoch](https://user-images.githubusercontent.com/36865654/128040460-64076282-251c-411c-81a9-0535219de0ce.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
