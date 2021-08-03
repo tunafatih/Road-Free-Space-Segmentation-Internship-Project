@@ -1,10 +1,14 @@
 # Road Free Space Segmentation Internship Project
 This repository contains the detecting of freespace with semantic segmentation using PyTorch.
 
+### The video below is the final of the project:
+
+[![IMAGE ALT TEXT](https://user-images.githubusercontent.com/36865654/128088561-6beb87f5-964e-436b-8abe-a3c94035d504.png)](http://www.youtube.com/watch?v=XRyBYGE_YO8 "Video Title")
 ## What is Freespace?
 
 Freespace is the drivable area of the highway.
-![example_freespace](https://user-images.githubusercontent.com/36865654/127042047-f071a48e-3190-461e-80f0-72f46634e1e8.jpg)
+
+![example_freespace](https://user-images.githubusercontent.com/36865654/128088186-7f4ef299-b01e-4836-a25a-fb4158d83b83.jpg)
 
  ## Data - Images and Jsons
  
@@ -587,8 +591,24 @@ This way the data is duplicated and added to the dataset. After the duplicated d
 
 ![before_after](https://user-images.githubusercontent.com/36865654/128046543-1e31b8bf-52ee-4e92-9d7c-c6e080b34c60.png)
 
+## images_to_video.py
 
+image_to_video.py is a script that converts images to video.
 
+```
+frame_rate = 20
+image_size = (1920,1080)
+img_seq_dir = 'D:\Ford_Intern\intern-p1\data\old\predicts'
+image_paths = glob(os.path.join(img_seq_dir, '*.png'))
+image_paths.sort()
+
+writer = cv2.VideoWriter('D:\Ford_Intern\intern-p1\src\predicts.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), frame_rate, image_size)
+
+for image_path in image_paths:
+    img = cv2.imread(image_path)
+    img = cv2.resize(img, image_size)
+    writer.write(img)
+```
 
 
 
