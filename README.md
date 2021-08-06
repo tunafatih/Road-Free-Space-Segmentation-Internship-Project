@@ -172,6 +172,7 @@ The script's tensorize_mask method converts masks to tensors. The mask is resize
 ```
 #### What is One Hot Encoding?
 One hot encoding is one method of converting data to prepare it for an algorithm and get a better prediction. With one-hot, converts each categorical value into a new categorical column and assign a binary value of 1 or 0 to those columns. Each integer value is represented as a binary vector. All the values are zero, and the index is marked with a 1.
+
 ![example_one_hot](https://user-images.githubusercontent.com/36865654/127770957-a5cf936e-c2a5-4da2-ac04-2a43a20a8f19.png)
 
 In this project, masks are converted to tensors with one hot encoding. One hot encoding is inside the one_hot_encoder method.
