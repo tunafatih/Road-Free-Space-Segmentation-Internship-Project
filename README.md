@@ -611,7 +611,7 @@ for image_path in image_paths:
     writer.write(img)
 ```
 
-
+## Example
 
 
 
