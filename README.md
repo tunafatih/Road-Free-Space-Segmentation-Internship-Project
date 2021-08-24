@@ -615,21 +615,21 @@ for image_path in image_paths:
 
 These samples were collected on another day and under similar weather conditions.
 
-#### Raw Images
+### Raw Images
 
 ![raw_1](https://user-images.githubusercontent.com/36865654/130610855-b161c87d-7d7a-47e9-be0b-e9cd7e2d5612.png)
 ![raw_2](https://user-images.githubusercontent.com/36865654/130610904-4a585d98-33d6-47e5-9812-ee8cd25d7e91.png)
 ![raw_3](https://user-images.githubusercontent.com/36865654/130610946-bf3cf642-59f9-4775-a5e6-be019d2cea27.png)
 ![raw_4](https://user-images.githubusercontent.com/36865654/130611004-3927ccb9-3175-4b31-a331-97b97c94e834.png)
 
-#### Labeled Images
+### Labeled Images
 
 ![labeled_1](https://user-images.githubusercontent.com/36865654/130611104-1c647d60-a91d-440c-9f10-645595043618.png)
 ![labeled_2](https://user-images.githubusercontent.com/36865654/130611140-35f9267c-9645-4350-9d10-f6063b1a9af6.png)
 ![labeled_3](https://user-images.githubusercontent.com/36865654/130611195-8c74730f-d34e-461a-9f7d-57e4f99440c1.png)
 ![labeled_4](https://user-images.githubusercontent.com/36865654/130611234-678f71bb-53ac-4853-bd8f-dc7597fd4386.png)
 
-#### Predicted Images
+### Predicted Images
 
 ![prediction_1](https://user-images.githubusercontent.com/36865654/130611332-ea23df1b-b5ac-49c7-a4c4-f31aafe936c4.png)
 ![prediction_2](https://user-images.githubusercontent.com/36865654/130611384-80487422-cf55-4417-8e8b-a25889850956.png)
