@@ -615,6 +615,10 @@ for image_path in image_paths:
 
 These samples were collected on another day and under similar weather conditions.
 
+#### Raw Images
+![raw_1](https://user-images.githubusercontent.com/36865654/130610855-b161c87d-7d7a-47e9-be0b-e9cd7e2d5612.png)
+
+
 
 
 
