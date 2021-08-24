@@ -633,6 +633,7 @@ These samples were collected on another day and under similar weather conditions
 
 ![prediction_1](https://user-images.githubusercontent.com/36865654/130611332-ea23df1b-b5ac-49c7-a4c4-f31aafe936c4.png)
 ![prediction_2](https://user-images.githubusercontent.com/36865654/130611384-80487422-cf55-4417-8e8b-a25889850956.png)
+![prediction_3](https://user-images.githubusercontent.com/36865654/130611426-26792f6a-7c57-4db1-b344-d6617ea039a2.png)
 
 
 
