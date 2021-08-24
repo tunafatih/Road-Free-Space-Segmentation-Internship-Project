@@ -611,10 +611,9 @@ for image_path in image_paths:
     writer.write(img)
 ```
 
-## Example
+## Examples From Different Dataset
 
-
-
+These samples were collected on another day and under similar weather conditions.
 
 
 
