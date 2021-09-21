@@ -587,7 +587,7 @@ This way the data is duplicated and added to the dataset. After the duplicated d
 
 ![full_cfc_cfcu_images_result](https://user-images.githubusercontent.com/36865654/128041275-e6f0a11d-e950-429e-b111-2b663fbc09f1.png) ![result_full_with_full_aug_25_epoch](https://user-images.githubusercontent.com/36865654/128041283-7051e459-29bc-465c-92b2-e4ceaab6efaf.png)
 
-![before_after](https://user-images.githubusercontent.com/36865654/128046543-1e31b8bf-52ee-4e92-9d7c-c6e080b34c60.png)
+![before_after](https://user-images.githubusercontent.com/36865654/134184023-c98fc545-967d-4723-906f-7e4192959199.png)
 
 ## images_to_video.py
 
