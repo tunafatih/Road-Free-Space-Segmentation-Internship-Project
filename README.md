@@ -1,9 +1,6 @@
 # Road Free Space Segmentation Internship Project
 This repository contains the detecting of freespace with semantic segmentation using PyTorch.
 
-### The video below is the final of the project:
-
-[![IMAGE ALT TEXT](https://user-images.githubusercontent.com/36865654/128088561-6beb87f5-964e-436b-8abe-a3c94035d504.png)](http://www.youtube.com/watch?v=XRyBYGE_YO8 "Video Title")
 ## What is Freespace?
 
 Freespace is the drivable area of the highway.
@@ -473,7 +470,7 @@ Some results of the project are shown below.
 ![cfc_000366 jpg](https://user-images.githubusercontent.com/36865654/128032849-c3fdc3ac-1801-4fc2-acee-23dc859d7f9b.png) ![cfc_000511 jpg](https://user-images.githubusercontent.com/36865654/128032940-038d0768-fe2a-4182-9394-9d36349c4a2c.png)
 ![cfc_000591 jpg](https://user-images.githubusercontent.com/36865654/128032959-efd33139-58f4-4804-80a7-4b3018a9a2c6.png) ![cfc_000925 jpg](https://user-images.githubusercontent.com/36865654/128033084-3c22d3d4-2590-4231-b298-4cb4233f6514.png)
 ![cfc_000927 jpg](https://user-images.githubusercontent.com/36865654/128033094-9a55602e-a704-4284-bb19-f5a219cc62e2.png) ![cfc_001238 jpg](https://user-images.githubusercontent.com/36865654/128033130-e7ebce64-91fc-4bc5-89e8-66b55139c497.png)
-![cfc_002527 jpg](https://user-images.githubusercontent.com/36865654/128033329-a2e6a6ad-70d1-4f1e-a58b-c3ccb4718a0f.png) ![cfc_002705 jpg](https://user-images.githubusercontent.com/36865654/128033392-61d08bbc-63c7-435d-aa59-9137e76e2542.png)
+![cfc_002527 jpg](https://user-images.githubusercontent.com/36865654/128033329-a2e6a6ad-70d1-4f1e-a58b-c3ccb4718a0f.png) ![cfc_002705](https://user-images.githubusercontent.com/36865654/134183416-7a899b96-9db1-49c9-9e66-66e296ba40e7.png)
 ![cfc_002759 jpg](https://user-images.githubusercontent.com/36865654/128033409-2da5ca99-a55b-46af-8aff-1cc91f4e69e1.png) ![cfc_003970 jpg](https://user-images.githubusercontent.com/36865654/128033494-da153595-d941-4f53-90eb-dd7abb251c03.png)
 
 Overall the results look good, but not so good for images with less in the dataset. The name of the way to solve this problem is data augmentation. 
